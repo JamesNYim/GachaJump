@@ -10,7 +10,7 @@ class Play extends Phaser.Scene {
 		this.load.image('pipe', 'assets/pipe.png');
 	}
 	create() {
-		this.backgroundMoveSpeed = 1
+		this.backgroundMoveSpeed = .01
 		keyJUMP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.cloudTest = this.add.tileSprite(
 			0,
@@ -44,7 +44,7 @@ class Play extends Phaser.Scene {
 	}
 		
 	update() { 
-		this.cloudTest.tilePositionX += this.character.moveSpeed / 2
+		this.cloudTest.tilePositionX += 1
 		this.character.update()
 	}
 
