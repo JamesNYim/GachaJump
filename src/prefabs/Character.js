@@ -7,15 +7,13 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 		this.moveSpeed = moveSpeed
 		this.jumpHeight = jumpHeight
 		this.gravity = gravity
-		this.body.setGravityY(300)
+		this.body.setGravityY(400)
 	}
 
 	preload() {
-		game.load.image('characterSprite', './assets/bird.png')
+		//game.load.image('characterSprite', './assets/bird.png')
 	}
-	create() {
 
-	}
 	update() {	
 		if (Phaser.Input.Keyboard.JustDown(keyJUMP)) {
 			this.jump()
@@ -24,8 +22,6 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
 	jump() {
 		console.log('Jump!')
-		this.body.setVelocityY(-400)
-		this.angle = -15
-		
+		this.body.setVelocityY(-250)
 	}
 }

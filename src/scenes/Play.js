@@ -7,6 +7,7 @@ class Play extends Phaser.Scene {
 		var characterSpritePath = './assets/bird.png'
 		this.load.image('cloudTest', './assets/CloudTest.png')
 		this.load.image('characterSprite', characterSpritePath)
+		this.load.image('pipe', 'assets/pipe.png');
 	}
 	create() {
 		this.backgroundMoveSpeed = 1
@@ -21,7 +22,7 @@ class Play extends Phaser.Scene {
 			
 		this.character = new Character(
 			this,
-			game.config.width / 2,
+			game.config.width / 8,
 			game.config.height / 2,
 			'characterSprite',
 			0,
@@ -29,12 +30,30 @@ class Play extends Phaser.Scene {
 			20,
 			100)
 			.setOrigin(0, 0)
-		
+
 			
-		}
+		this.gameTimer = this.time.addEvent({
+			delay: 5000,
+			callback: this.createPipes,
+			callbackScope: this,
+			loop: true
+		})
+
+		this.obstacles = this.physics.add.group()
+
+	}
 		
-	update() {
+	update() { 
 		this.cloudTest.tilePositionX += this.character.moveSpeed / 2
 		this.character.update()
+	}
+
+	createPipes() {
+		console.log("created pipes")
+		let x = this.game.config.width
+		let y = this.game.config.height * 2
+
+		let obstacle = new Obstacle(this, x, y, 'pipe')
+		this.obstacles.add(obstacle)
 	}
 }
