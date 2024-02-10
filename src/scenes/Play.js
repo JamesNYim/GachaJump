@@ -10,7 +10,13 @@ class Play extends Phaser.Scene {
 		this.load.image('pipe', 'assets/pipe.png');
 	}
 	create() {
-		this.backgroundMoveSpeed = .01
+		this.score = 0;
+		this.scoreText = this.add.text(24, 
+			24, 
+			'score: 0', 
+			{font: 'Arial', fontSize: '32px', fill: '#FFF'})
+
+		this.backgroundMoveSpeed = 1
 		keyJUMP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.cloudTest = this.add.tileSprite(
 			0,
@@ -30,30 +36,36 @@ class Play extends Phaser.Scene {
 			20,
 			100)
 			.setOrigin(0, 0)
-
+ 
 			
 		this.gameTimer = this.time.addEvent({
-			delay: 5000,
+			delay: 4000,
 			callback: this.createPipes,
 			callbackScope: this,
 			loop: true
 		})
-
-		this.obstacles = this.physics.add.group()
-
+		this.obstacleGroup = this.physics.add.group()
+		this.physics.add.collider(this.character, this.obstacleGroup, this.endGame, this.endGame, this);
 	}
 		
 	update() { 
-		this.cloudTest.tilePositionX += 1
+		this.cloudTest.tilePositionX += this.backgroundMoveSpeed
 		this.character.update()
 	}
 
+	endGame() {
+		console.log("end game")
+		this.scene.restart();
+	}
+
 	createPipes() {
-		console.log("created pipes")
+		//console.log("created pipes")
 		let x = this.game.config.width
 		let y = this.game.config.height * 2
 
-		let obstacle = new Obstacle(this, x, y, 'pipe')
-		this.obstacles.add(obstacle)
+		let obstacle = new Obstacle(this, x, y, 'pipe', 0, this.obstacleGroup)
+		this.score += 1
+		this.scoreText.setText('Score: ' + this.score)
+		
 	}
 }
