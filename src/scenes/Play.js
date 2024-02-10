@@ -61,9 +61,13 @@ class Play extends Phaser.Scene {
 	}
 
 	addPoint() {
-		this.score += 1
-		this.scoreText.setText('Score: ' + this.score)
-		console.log("Scored ")
+		if (!this.sensorGroup.hasScored) {
+			this.score += 1
+			this.scoreText.setText('Score: ' + this.score)
+			this.sensorGroup.hasScored = true
+			console.log("Scored ")
+		}
+		
 		
 	}
 
@@ -71,7 +75,7 @@ class Play extends Phaser.Scene {
 		//console.log("created pipes")
 		let x = this.game.config.width
 		let y = this.game.config.height * 2
-
+		this.sensorGroup.hasScored = false
 		let obstacle = new Obstacle(this, x, y, 'pipe', 0, this.obstacleGroup, this.sensorGroup)
 		
 	}
