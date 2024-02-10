@@ -45,7 +45,9 @@ class Play extends Phaser.Scene {
 			loop: true
 		})
 		this.obstacleGroup = this.physics.add.group()
-		this.physics.add.collider(this.character, this.obstacleGroup, this.endGame, this.endGame, this);
+		this.sensorGroup = this.add.group()
+		this.physics.add.collider(this.character, this.obstacleGroup, this.endGame, null, this);
+		this.physics.add.overlap(this.character, this.sensorGroup, this.addPoint, null, this);
 	}
 		
 	update() { 
@@ -58,14 +60,19 @@ class Play extends Phaser.Scene {
 		this.scene.restart();
 	}
 
+	addPoint() {
+		this.score += 1
+		this.scoreText.setText('Score: ' + this.score)
+		console.log("Scored ")
+		
+	}
+
 	createPipes() {
 		//console.log("created pipes")
 		let x = this.game.config.width
 		let y = this.game.config.height * 2
 
-		let obstacle = new Obstacle(this, x, y, 'pipe', 0, this.obstacleGroup)
-		this.score += 1
-		this.scoreText.setText('Score: ' + this.score)
+		let obstacle = new Obstacle(this, x, y, 'pipe', 0, this.obstacleGroup, this.sensorGroup)
 		
 	}
 }

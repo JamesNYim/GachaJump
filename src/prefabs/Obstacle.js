@@ -1,12 +1,12 @@
 class Obstacle extends Phaser.Physics.Arcade.Sprite {
-	constructor(scene, x, y, texture, frame, obstaclesGroup) {
+	constructor(scene, x, y, texture, frame, obstaclesGroup, sensorGroup) {
 		super(scene, x, y, texture, frame)
 		this.scene = scene
 		scene.physics.add.existing(this)
 		scene.physics.world.enable(this);
 		this.pipeTexture = texture
-		console.log(typeof(obstaclesGroup))
 		this.obstaclesGroup = obstaclesGroup
+		this.sensorGroup = sensorGroup
 		this.spawnPipe()
 		
 	}
@@ -14,14 +14,16 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
 	spawnPipeSection(x, y) {
 		console.log("spawned Pipe section")
 		var pipe = this.scene.physics.add.sprite(x, y, this.pipeTexture)
+		var pipeSensor = this.scene.add.rectangle(x + pipe.width + 10, y, 1, pipe.height)
+		pipeSensor.pipe = pipe
+		this.scene.physics.add.existing(pipeSensor, true);
+		this.sensorGroup.add(pipeSensor);
 		this.scene.physics.world.enable(pipe);
 		this.obstaclesGroup.add(pipe)
+
 		pipe.body.setVelocityX(-100)
-		pipe.checkWorldBounds = true
+		pipe.checkWorldBounds = true  
 		pipe.outOfBoundsKill = true
-		
-		
-		
 	}
 
 	spawnPipe() {
