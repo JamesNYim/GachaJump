@@ -4,6 +4,7 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 		scene.physics.add.existing(this)
 		scene.add.existing(this)
 		scene.physics.world.enable(this);
+		this.scene = scene
 		this.moveSpeed = moveSpeed
 		this.jumpHeight = jumpHeight
 		this.gravity = gravity
@@ -19,6 +20,7 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 
 	jump() {
 		//console.log('Jump!')
+		this.scene.sound.play('jumpSFX')
 		this.body.setVelocityY(-250)
 	}
 }

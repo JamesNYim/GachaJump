@@ -4,10 +4,13 @@ class Play extends Phaser.Scene {
 	}
 
 	preload() {
-		var characterSpritePath = './assets/bird.png'
+		var characterSpritePath = './assets/Purple_Bird.png'
 		this.load.image('cloudTest', './assets/CloudTest.png')
 		this.load.image('characterSprite', characterSpritePath)
-		this.load.image('pipe', 'assets/pipe.png');
+		this.load.image('pipe', 'assets/Pipe_Body.png');
+		this.load.image('pipeEndUp', 'assets/Pipe_EntranceExit.png')
+		this.load.image('pipeEndDown', 'assets/Pipe_EntranceExit_Upside_Down_.png')
+		this.load.audio('jumpSFX', 'assets/jump.wav')
 	}
 	create() {
 		this.score = 0;
@@ -76,7 +79,13 @@ class Play extends Phaser.Scene {
 		let x = this.game.config.width
 		let y = this.game.config.height * 2
 		this.sensorGroup.hasScored = false
-		let obstacle = new Obstacle(this, x, y, 'pipe', 0, this.obstacleGroup, this.sensorGroup)
+		let obstacle = new Obstacle(this, 
+			x, y, 
+			'pipe', 
+			0, 
+			this.obstacleGroup, 
+			this.sensorGroup, 
+			'pipeEndUp', 'pipeEndDown')
 		
 	}
 }
