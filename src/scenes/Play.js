@@ -5,7 +5,7 @@ class Play extends Phaser.Scene {
 
 	preload() {
 		var characterSpritePath = './assets/Purple_Bird.png'
-		this.load.image('cloudTest', './assets/GachaJumpBackground.png')
+		this.load.image('background', './assets/GachaJumpBackground.png')
 		this.load.image('characterSprite', characterSpritePath)
 		this.load.image('pipe', 'assets/Pipe_Body.png');
 		this.load.image('pipeEndUp', 'assets/Pipe_EntranceExit.png')
@@ -27,12 +27,12 @@ class Play extends Phaser.Scene {
 
 		this.backgroundMoveSpeed = 1
 		keyJUMP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-		this.cloudTest = this.add.tileSprite(
+		this.background = this.add.tileSprite(
 			0,
 			0,
 			980,
 			980,
-			'cloudTest')
+			'background')
 			.setOrigin(0,0)
 			
 		this.character = new Character(
@@ -61,7 +61,7 @@ class Play extends Phaser.Scene {
 	}
 		
 	update() { 
-		this.cloudTest.tilePositionX += this.backgroundMoveSpeed
+		this.background.tilePositionX += this.backgroundMoveSpeed
 		this.character.update()
 	}
 
