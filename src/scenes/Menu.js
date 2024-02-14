@@ -44,6 +44,6 @@ class Menu extends Phaser.Scene {
 
 		this.exitButton.setInteractive()
 		this.exitButton.on('pointerdown', () =>
-			game.destroy())
+			game.destroy(true, false))
 	}
 }

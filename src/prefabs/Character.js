@@ -14,7 +14,7 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 		this.flapAnimation = this.scene.anims.create({
 			key: 'characterFlap',
 			frames: this.anims.generateFrameNumbers(characterSprites, {
-				frames: [2, 3, 3, 3, 2],
+				frames: [0, 1, 1, 1, 0],
 				frameRate: 2 
 		})
 	})
@@ -27,8 +27,6 @@ class Character extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	jump() {
-		//console.log('Jump!')
-		//let jumpAnimation = this.scene.add.sprite(this.x, this.y, this.flapAnimation).setOrigin(0, 0);
 		this.anims.play('characterFlap')
 		this.scene.sound.play('jumpSFX')
 		this.body.setVelocityY(-250)
