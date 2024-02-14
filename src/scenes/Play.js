@@ -4,16 +4,17 @@ class Play extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image('background', './assets/GachaJumpBackground.png')
-		
+		this.load.image('playBackground', './assets/GachaJumpBackground.png')
+		this.load.image('tutorialTip', './assets/uiSprites/tutorial_tip.png')
 		this.load.image('pipe', 'assets/Pipe_Body.png');
 		this.load.image('pipeEndUp', 'assets/Pipe_EntranceExit.png')
 		this.load.image('pipeEndDown', 'assets/Pipe_EntranceExit_Upside_Down_.png')
+		
 		this.load.audio('jumpSFX', 'assets/sfx/wingFlap.wav')
 		this.load.audio('deadSFX', 'assets/sfx/deadSound.wav')
 		this.load.audio('rollUnlockedSFX', 'assets/sfx/rollUnlockedSound.wav')
 		this.load.audio('scoredSFX', 'assets/sfx/scoredSound.wav')
-		
+		this.load.audio('backgroundMusic', './assets/sfx/treehouse-jeff-kaale-main-version-29078-01-43.mp3')
 		var PalSpritePath = './assets/PalSprites/Purple_Bird.png'
 		this.load.image('characterSprite', PalSpritePath)
 		this.load.spritesheet('PalAnimationSpritesheet', 
@@ -26,7 +27,11 @@ class Play extends Phaser.Scene {
 		})
 	}
 	create() {
-
+		this.backgroundMusic = this.sound.add('backgroundMusic', {
+			volume: .5,
+			loop: true
+		})
+		this.backgroundMusic.play()
 		this.backgroundMoveSpeed = 1
 		keyJUMP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.background = this.add.tileSprite(
@@ -34,7 +39,7 @@ class Play extends Phaser.Scene {
 			0,
 			980,
 			980,
-			'background')
+			'playBackground')
 			.setOrigin(0,0)
 			
 		this.character = new Character(
@@ -65,6 +70,12 @@ class Play extends Phaser.Scene {
 				}
 			)
 
+			this.tutorialTip = this.add.sprite(
+				200,
+				300,
+				'tutorialTip'
+			)
+
 
 		this.gameTimer = this.time.addEvent({
 			delay: 4000,
@@ -81,10 +92,14 @@ class Play extends Phaser.Scene {
 	update() { 
 		this.background.tilePositionX += this.backgroundMoveSpeed
 		this.character.update()
+		if (this.score == 1) {
+			this.tutorialTip.destroy(true)
+		}
 	}
 
 	endGame() {
 		this.sound.play('deadSFX')
+		this.backgroundMusic.stop()
 		this.scene.start('menuScene');
 	}
 
