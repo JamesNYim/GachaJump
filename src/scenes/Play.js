@@ -13,7 +13,7 @@ class Play extends Phaser.Scene {
 		this.load.audio('deadSFX', 'assets/sfx/deadSound.wav')
 		this.load.audio('rollUnlockedSFX', 'assets/sfx/rollUnlockedSound.wav')
 		this.load.audio('scoredSFX', 'assets/sfx/scoredSound.wav')
-
+		
 		var PalSpritePath = './assets/PalSprites/Purple_Bird.png'
 		this.load.image('characterSprite', PalSpritePath)
 		this.load.spritesheet('PalAnimationSpritesheet', 
@@ -54,13 +54,14 @@ class Play extends Phaser.Scene {
 				24, 
 				'score: 0', 
 				{ font: 'arial', 
-					fontSize: '128px', 
+					fontSize: 128, 
 					fill: '#FFF',
 					align: 'right',
 					padding: {
 						top: 5,
 						bottom: 5,
 						},
+					width:'128px'
 				}
 			)
 
@@ -84,7 +85,7 @@ class Play extends Phaser.Scene {
 
 	endGame() {
 		this.sound.play('deadSFX')
-		this.scene.restart();
+		this.scene.start('menuScene');
 	}
 
 	addPoint() {

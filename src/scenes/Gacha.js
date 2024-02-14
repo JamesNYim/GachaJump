@@ -32,7 +32,7 @@ class Gacha extends Phaser.Scene {
 		)
 		this.backButton.setInteractive()
 		this.backButton.on('pointerdown', () =>
-			this.scene.start('menuScene'), this.sound.play('buttonSFX'))
+			this.scene.start('menuScene'))
 		
 		this.gachaRoll()
 	}

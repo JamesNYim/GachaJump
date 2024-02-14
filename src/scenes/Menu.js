@@ -38,14 +38,21 @@ class Menu extends Phaser.Scene {
 		)
 		this.playButton.setInteractive()
 		this.playButton.on('pointerdown', () =>
-			this.scene.start('playScene'), this.sound.play('buttonSFX'))
+			this.sceneChange('playScene', 'buttonSFX'))
 
 		this.rollButton.setInteractive()
 		this.rollButton.on('pointerdown', () =>
-			this.scene.start('gachaScene'), this.sound.play('buttonSFX'))
-
+		this.sceneChange('gachaScene', 'buttonSFX'))
+		
 		this.exitButton.setInteractive()
 		this.exitButton.on('pointerdown', () =>
-			game.destroy(true, false), this.sound.play('buttonSFX'))
+			game.destroy(true, false))
+	}
+
+	sceneChange(scene, sfx) {
+		this.sound.play(sfx)
+		this.time.delayedCall(100, () => {
+			this.scene.start(scene)
+		}, [], this)
 	}
 }
