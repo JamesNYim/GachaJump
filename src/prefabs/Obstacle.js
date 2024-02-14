@@ -36,7 +36,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
 
 	spawnPipe() {
 		var hole = Math.floor(Math.random() * 10) + 1
-		for (var i = 0; i < 13; ++i) {
+		for (var i = 0; i < 20; ++i) {
 			if (i == hole - 2) {
 				this.spawnPipeSection(800, i * 50, this.pipeEndDownTexture)
 			}

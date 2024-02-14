@@ -5,12 +5,18 @@ class Play extends Phaser.Scene {
 
 	preload() {
 		var characterSpritePath = './assets/Purple_Bird.png'
-		this.load.image('cloudTest', './assets/CloudTest.png')
+		this.load.image('cloudTest', './assets/GachaJumpBackground.png')
 		this.load.image('characterSprite', characterSpritePath)
 		this.load.image('pipe', 'assets/Pipe_Body.png');
 		this.load.image('pipeEndUp', 'assets/Pipe_EntranceExit.png')
 		this.load.image('pipeEndDown', 'assets/Pipe_EntranceExit_Upside_Down_.png')
 		this.load.audio('jumpSFX', 'assets/jump.wav')
+		this.load.spritesheet('birdSpritesheet', './assets/BirdsSpritesheet.png', {
+			frameWidth: 50,
+			fameHeight: 50,
+			startFrame: 0,
+			endFrame: 5
+		})
 	}
 	create() {
 		this.score = 0;
@@ -37,7 +43,8 @@ class Play extends Phaser.Scene {
 			0,
 			2,
 			20,
-			100)
+			100,
+			'birdSpritesheet')
 			.setOrigin(0, 0)
  
 			
