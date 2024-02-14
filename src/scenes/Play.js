@@ -9,7 +9,10 @@ class Play extends Phaser.Scene {
 		this.load.image('pipe', 'assets/Pipe_Body.png');
 		this.load.image('pipeEndUp', 'assets/Pipe_EntranceExit.png')
 		this.load.image('pipeEndDown', 'assets/Pipe_EntranceExit_Upside_Down_.png')
-		this.load.audio('jumpSFX', 'assets/jump.wav')
+		this.load.audio('jumpSFX', 'assets/sfx/wingFlap.wav')
+		this.load.audio('deadSFX', 'assets/sfx/deadSound.wav')
+		this.load.audio('rollUnlockedSFX', 'assets/sfx/rollUnlockedSound.wav')
+		this.load.audio('scoredSFX', 'assets/sfx/scoredSound.wav')
 
 		var PalSpritePath = './assets/PalSprites/Purple_Bird.png'
 		this.load.image('characterSprite', PalSpritePath)
@@ -80,6 +83,7 @@ class Play extends Phaser.Scene {
 	}
 
 	endGame() {
+		this.sound.play('deadSFX')
 		this.scene.restart();
 	}
 
@@ -88,6 +92,13 @@ class Play extends Phaser.Scene {
 			this.score += 1
 			this.scoreText.setText('Score: ' + this.score)
 			this.sensorGroup.hasScored = true
+
+			if (this.score % 5 == 0) {
+				this.sound.play('rollUnlockedSFX')
+			}
+			else {
+				this.sound.play('scoredSFX')
+			}
 		}
 		
 		

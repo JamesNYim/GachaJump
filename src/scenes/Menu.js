@@ -8,6 +8,8 @@ class Menu extends Phaser.Scene {
 		this.load.image('playButton', './assets/uiSprites/Play_Button.png')
 		this.load.image('exitButton', './assets/uiSprites/Exit_Button.png')
 		this.load.image('rollButton', './assets/uiSprites/Roll_Button.png')
+		this.load.audio('buttonSFX', 'assets/sfx/buttonClickSound.wav')
+
 	}
 
 	create() {
@@ -36,14 +38,14 @@ class Menu extends Phaser.Scene {
 		)
 		this.playButton.setInteractive()
 		this.playButton.on('pointerdown', () =>
-			this.scene.start('playScene'))
+			this.scene.start('playScene'), this.sound.play('buttonSFX'))
 
 		this.rollButton.setInteractive()
 		this.rollButton.on('pointerdown', () =>
-			this.scene.start('gachaScene'))
+			this.scene.start('gachaScene'), this.sound.play('buttonSFX'))
 
 		this.exitButton.setInteractive()
 		this.exitButton.on('pointerdown', () =>
-			game.destroy(true, false))
+			game.destroy(true, false), this.sound.play('buttonSFX'))
 	}
 }

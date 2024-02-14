@@ -6,6 +6,7 @@ class Gacha extends Phaser.Scene {
 
 	preload() {
 		this.load.image('background', './assets/GachaJumpBackground.png')
+		this.load.image('backButton', './assets/uiSprites/Back_Button.png')
 		this.load.image('Purple_Bird', './assets/PalSprites/Purple_Bird.png')
 		this.load.image('Green_Bird', './assets/PalSprites/Green_Bird.png')
 		this.load.image('Chicken', './assets/PalSprites/Chicken.png')
@@ -23,6 +24,15 @@ class Gacha extends Phaser.Scene {
 			0,
 			'background')
 			.setOrigin(0, 0)
+
+		this.backButton = this.add.image(
+			100,
+			50,
+			'backButton'
+		)
+		this.backButton.setInteractive()
+		this.backButton.on('pointerdown', () =>
+			this.scene.start('menuScene'), this.sound.play('buttonSFX'))
 		
 		this.gachaRoll()
 	}
