@@ -8,6 +8,7 @@ class Menu extends Phaser.Scene {
 		this.load.image('playButton', './assets/uiSprites/Play_Button.png')
 		this.load.image('exitButton', './assets/uiSprites/Exit_Button.png')
 		this.load.image('rollButton', './assets/uiSprites/Roll_Button.png')
+		this.load.image('creditsButton', './assets/uiSprites/Credits_Button.png')
 		this.load.audio('buttonSFX', 'assets/sfx/buttonClickSound.wav')
 
 	}
@@ -21,13 +22,13 @@ class Menu extends Phaser.Scene {
 	
 		this.playButton = this.add.image(
 			400,
-			450,
+			400,
 			'playButton'
 		)
 
 		this.rollButton = this.add.image(
-			150,
-			450,
+			400,
+			525,
 			'rollButton'
 		)
 
@@ -36,6 +37,12 @@ class Menu extends Phaser.Scene {
 			450,
 			'exitButton'
 		)
+
+		this.creditsButton = this.add.image(
+			150,
+			450,
+			'creditsButton'
+		)
 		this.playButton.setInteractive()
 		this.playButton.on('pointerdown', () =>
 			this.sceneChange('playScene', 'buttonSFX'))
@@ -43,6 +50,10 @@ class Menu extends Phaser.Scene {
 		this.rollButton.setInteractive()
 		this.rollButton.on('pointerdown', () =>
 		this.sceneChange('gachaScene', 'buttonSFX'))
+
+		this.creditsButton.setInteractive()
+		this.creditsButton.on('pointerdown', () =>
+			this.sceneChange('creditsScene', 'buttonSFX'))
 		
 		this.exitButton.setInteractive()
 		this.exitButton.on('pointerdown', () =>
