@@ -3,6 +3,7 @@ This game is about collecting all the Pals and getting high scores.
 
 ## Info
 A game by James Yim
+
 Hours Spent: approx 28
 
 ## Gameplay
