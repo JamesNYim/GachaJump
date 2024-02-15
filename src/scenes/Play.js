@@ -33,6 +33,9 @@ class Play extends Phaser.Scene {
 		})
 		this.backgroundMusic.play()
 		this.backgroundMoveSpeed = 1
+		this.pipeMultiplier = 1
+		this.pipeCount = 0;
+
 		keyJUMP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.background = this.add.tileSprite(
 			0,
@@ -125,6 +128,10 @@ class Play extends Phaser.Scene {
 
 	createPipes() {
 		//console.log("created pipes")
+		if (this.pipeCount % 5 == 0) {
+			this.pipeMultiplier += .5
+		}
+		
 		let x = this.game.config.width
 		let y = this.game.config.height * 2
 		this.sensorGroup.hasScored = false
@@ -134,7 +141,8 @@ class Play extends Phaser.Scene {
 			0, 
 			this.obstacleGroup, 
 			this.sensorGroup, 
-			'pipeEndUp', 'pipeEndDown')
+			'pipeEndUp', 'pipeEndDown', this.pipeMultiplier)
+		this.pipeCount += 1
 		
 	}
 }

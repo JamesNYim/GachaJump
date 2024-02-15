@@ -1,3 +1,5 @@
+//See README.md for Creative Tilt//
+
 let config = {
 	type: Phaser.AUTO,
 	scale: {

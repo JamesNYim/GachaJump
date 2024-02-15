@@ -1,5 +1,5 @@
 class Obstacle extends Phaser.Physics.Arcade.Sprite {
-	constructor(scene, x, y, texture, frame, obstaclesGroup, sensorGroup, pipeEndUpTexture, pipeEndDownTexture) {
+	constructor(scene, x, y, texture, frame, obstaclesGroup, sensorGroup, pipeEndUpTexture, pipeEndDownTexture, pipeMoveMult) {
 		super(scene, x, y, texture, frame)
 		this.scene = scene
 		scene.physics.add.existing(this)
@@ -9,6 +9,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
 		this.pipeEndDownTexture = pipeEndDownTexture
 		this.obstaclesGroup = obstaclesGroup
 		this.sensorGroup = sensorGroup
+		this.pipeMult = pipeMoveMult
 		this.spawnPipe()
 		
 	}
@@ -18,7 +19,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
 		this.scene.physics.world.enable(pipe);
 		this.obstaclesGroup.add(pipe)
 
-		pipe.body.setVelocityX(-100)
+		pipe.body.setVelocityX(-100 * this.pipeMult)
 		pipe.checkWorldBounds = true  
 		pipe.outOfBoundsKill = true
 	}
@@ -28,7 +29,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
 		this.scene.physics.world.enable(pipeSensor)
 		this.sensorGroup.add(pipeSensor);
 
-		pipeSensor.body.setVelocityX(-100)
+		pipeSensor.body.setVelocityX(-100 * this.pipeMult)
 		pipeSensor.checkWorldBounds = true  
 		pipeSensor.outOfBoundsKill = true
 		pipeSensor.hasScored = false
