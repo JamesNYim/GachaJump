@@ -1,6 +1,10 @@
 # PalJump
 This game is about collecting all the Pals and getting high scores.
 
+## Info
+A game by James Yim
+Hours Spent: approx 28
+
 ## Gameplay
 The goal of the game is to get a high score while collecting Pal Prisms to unlock new Pals.
 ### Controls
