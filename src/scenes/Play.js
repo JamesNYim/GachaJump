@@ -53,22 +53,25 @@ class Play extends Phaser.Scene {
 			100,
 			'PalAnimationSpritesheet')
 			.setOrigin(0, 0)
- 
-			this.score = 0;
-			this.scoreText = this.add.text(24, 
-				24, 
-				'score: 0', 
-				{ font: 'arial', 
-					fontSize: 128, 
-					fill: '#FFF',
-					align: 'right',
-					padding: {
-						top: 5,
-						bottom: 5,
-						},
-					width:'128px'
-				}
-			)
+		
+		this.scoreConfig = {
+			fontFamily: 'Courier',
+			fontSize: '24px',
+			backgroundColor: 'transparent',
+			color: '#fff',
+			align: 'right',
+			padding: {
+			top: 5,
+			bottom: 5,
+			},
+			width: 'flex'
+		}
+		this.score = 0;
+		this.scoreText = this.add.text(
+			24,
+			24,
+			`Score: ${this.score}`,
+			this.scoreConfig)
 
 			this.tutorialTip = this.add.sprite(
 				200,
