@@ -1,5 +1,6 @@
 # PalJump
 This game is about collecting all the Pals and getting high scores.
+https://jamesnyim.github.io/GachaJump/
 
 ## Info
 A game by James Yim
